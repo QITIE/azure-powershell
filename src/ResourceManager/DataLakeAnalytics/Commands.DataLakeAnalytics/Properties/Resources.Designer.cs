@@ -142,7 +142,7 @@ namespace Microsoft.Azure.Commands.DataLakeAnalytics.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Invalid JobType selected. Please select -USql when submitting a job.
+        ///   Looks up a localized string similar to Invalid JobType {0} selected. Valid job types are &apos;Hive&apos; and &apos;USql&apos;..
         /// </summary>
         internal static string InvalidJobType {
             get {

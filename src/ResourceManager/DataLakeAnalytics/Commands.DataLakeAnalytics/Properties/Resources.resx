@@ -136,7 +136,7 @@
     <value>Invalid catalog path: '{0}'. A catalog path must be in the following format with no empty internal elements: &lt;FirstPart&gt;.&lt;OptionalSecondPart&gt;.&lt;OptionalThirdPart&gt;.&lt;OptionalFourthPart&gt;. For example: Master.dbo.tableName.tableStatisticsName</value>
   </data>
   <data name="InvalidJobType" xml:space="preserve">
-    <value>Invalid JobType selected. Please select -USql when submitting a job</value>
+    <value>Invalid JobType {0} selected. Valid job types are 'Hive' and 'USql'.</value>
   </data>
   <data name="DataLakeAnalyticsAccountExists" xml:space="preserve">
     <value>Data Lake Analytics account with name '{0}' already exists.</value>
