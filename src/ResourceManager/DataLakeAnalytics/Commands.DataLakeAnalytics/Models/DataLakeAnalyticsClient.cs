@@ -268,7 +268,7 @@ namespace Microsoft.Azure.Commands.DataLakeAnalytics.Models
                 resourceGroupName = GetResourceGroupByAccountName(accountName);
             }
 
-            var storageParams = new AddStorageAccountParameters
+            var storageParams = new AddOrUpdateStorageAccountParameters
             {
                 Properties = storageToAdd.Properties
             };
@@ -284,7 +284,7 @@ namespace Microsoft.Azure.Commands.DataLakeAnalytics.Models
                 resourceGroupName = GetResourceGroupByAccountName(accountName);
             }
 
-            var storageParams = new AddStorageAccountParameters
+            var storageParams = new AddOrUpdateStorageAccountParameters
             {
                 Properties = storageToSet.Properties
             };
