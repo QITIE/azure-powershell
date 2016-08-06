@@ -204,4 +204,10 @@
   <data name="RemovingDataLakeAnalyticsCatalogSecrets" xml:space="preserve">
     <value>Are you sure you want to remove ALL Data Lake Analytics catalog secrets in database '{0}'?</value>
   </data>
+  <data name="RemoveDataLakeAnalyticsCatalogCredential" xml:space="preserve">
+    <value>Removing Data Lake Analytics catalog credential '{0}' ...</value>
+  </data>
+  <data name="RemovingDataLakeAnalyticsCatalogCredential" xml:space="preserve">
+    <value>Are you sure you want to remove Data Lake Analytics catalog credential '{0}'?</value>
+  </data>
 </root>

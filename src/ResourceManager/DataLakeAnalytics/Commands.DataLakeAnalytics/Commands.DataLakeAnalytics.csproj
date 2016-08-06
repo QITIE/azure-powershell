@@ -117,6 +117,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\GetAzureRmDataLakeAnalyticsDataSource.cs" />
+    <Compile Include="Commands\RemoveAzureRmDataLakeAnalyticsCatalogCredential.cs" />
+    <Compile Include="Commands\SetAzureRmDataLakeAnalyticsCatalogCredential.cs" />
+    <Compile Include="Commands\NewAzureRmDataLakeAnalyticsCatalogCredential.cs" />
     <Compile Include="Commands\RemoveAzureRmDataLakeAnalyticsCatalogSecret.cs" />
     <Compile Include="Commands\SetAzureRmDataLakeAnalyticsCatalogSecret.cs" />
     <Compile Include="Commands\NewAzureRmDataLakeAnalyticsCatalogSecret.cs" />
