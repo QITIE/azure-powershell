@@ -438,36 +438,6 @@ namespace Microsoft.Azure.Commands.DataLakeAnalytics.Models
             }
         }
 
-        public USqlCredential CreateCredential(string accountName, string databaseName,
-            string credentialName, string userId, string password, string hostUri)
-        {
-            return _catalogClient.Catalog.CreateCredential(accountName, databaseName, credentialName,
-                new DataLakeAnalyticsCatalogCredentialCreateParameters
-                {
-                    Password = password,
-                    Uri = hostUri,
-                    UserId = userId
-                });
-        }
-
-        public USqlCredential UpdateCredentialPassword(string accountName, string databaseName,
-            string credentialName, string userId, string password, string newPassword, string hostUri)
-        {
-            return _catalogClient.Catalog.UpdateCredential(accountName, databaseName, credentialName,
-                new DataLakeAnalyticsCatalogCredentialUpdateParameters
-                {
-                    Password = password,
-                    NewPassword = newPassword,
-                    Uri = hostUri,
-                    UserId = userId
-                });
-        }
-
-        public void DeleteCredential(string accountName, string databaseName, string credentialName)
-        {
-            _catalogClient.Catalog.DeleteCredential(accountName, databaseName, credentialName);
-        }
-
         public USqlSecret GetSecret(string accountName, string databaseName, string secretName)
         {
             return _catalogClient.Catalog.GetSecret(accountName, databaseName, secretName);
@@ -495,8 +465,6 @@ namespace Microsoft.Azure.Commands.DataLakeAnalytics.Models
         public void CreateCredential(string accountName, string databaseName,
             string credentialName, string userId, string password, string hostUri)
         {
-            /*
-            * TODO: Uncomment this in the next release when credential CRUD is supported.
             _catalogClient.Catalog.CreateCredential(accountName, databaseName, credentialName,
                 new DataLakeAnalyticsCatalogCredentialCreateParameters
                 {
@@ -504,16 +472,11 @@ namespace Microsoft.Azure.Commands.DataLakeAnalytics.Models
                     Uri = hostUri,
                     UserId = userId
                 });
-            */
-
-            throw new NotImplementedException();
         }
 
         public void UpdateCredentialPassword(string accountName, string databaseName,
             string credentialName, string userId, string password, string newPassword, string hostUri)
         {
-            /*
-            * TODO: Uncomment this in the next release when credential CRUD is supported.
             _catalogClient.Catalog.UpdateCredential(accountName, databaseName, credentialName,
                 new DataLakeAnalyticsCatalogCredentialUpdateParameters
                 {
@@ -522,20 +485,14 @@ namespace Microsoft.Azure.Commands.DataLakeAnalytics.Models
                     Uri = hostUri,
                     UserId = userId
                 });
-            */
-            throw new NotImplementedException();
         }
 
         public void DeleteCredential(string accountName, string databaseName, string credentialName, string password = null)
         {
-            /*
-            * TODO: Uncomment this in the next release when credential CRUD is supported.
             _catalogClient.Catalog.DeleteCredential(accountName,
                 databaseName,
                 credentialName,
                 string.IsNullOrEmpty(password) ? null : new DataLakeAnalyticsCatalogCredentialDeleteParameters(password));
-            */
-            throw new NotImplementedException();
         }
         
 

@@ -39,6 +39,11 @@ namespace Microsoft.Azure.Commands.DataLakeAnalytics
         [ValidateNotNullOrEmpty]
         public string Name { get; set; }
 
+        [Parameter(ValueFromPipelineByPropertyName = true, Position = 3,
+            Mandatory = false, HelpMessage = "The password for the credential to be removed. Required if the caller is not the account owner.")]
+        [ValidateNotNullOrEmpty]
+        public PSCredential Password { get; set; }
+
         [Parameter(Position = 3, Mandatory = false, HelpMessage = "Do not ask for confirmation.")]
         public SwitchParameter Force { get; set; }
 
@@ -54,7 +59,10 @@ namespace Microsoft.Azure.Commands.DataLakeAnalytics
                 Name,
                 () =>
                 {
-                    DataLakeAnalyticsClient.DeleteCredential(Account, DatabaseName, Name);
+                    DataLakeAnalyticsClient.DeleteCredential(Account, 
+                        DatabaseName, 
+                        Name, 
+                        Password != null ? Password.GetNetworkCredential().Password : string.Empty);
                     if (PassThru)
                     {
                         WriteObject(true);
