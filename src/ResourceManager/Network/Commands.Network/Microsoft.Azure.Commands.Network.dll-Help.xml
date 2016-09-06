@@ -7523,7 +7523,7 @@ Subnets           : []</dev:code>
 	<maml:alertSet>
 		<maml:title></maml:title>
 		<maml:alert>
-			<maml:para />
+			<maml:para>Keywords: azure, azurerm, arm, resource, management, manager, network, networking, peering</maml:para>
 		</maml:alert>
 	</maml:alertSet>
 	<command:examples>
@@ -7592,6 +7592,18 @@ RemoteVirtualNetworkAddressSpace : null</maml:para>
 		</command:example>
 	</command:examples>
 	<maml:relatedLinks>
+		<maml:navigationLink>
+			<maml:linkText>Get-AzureRmVirtualNetworkPeering</maml:linkText>
+			<maml:uri></maml:uri>
+		</maml:navigationLink>
+		<maml:navigationLink>
+			<maml:linkText>Remove-AzureRmVirtualNetworkPeering</maml:linkText>
+			<maml:uri></maml:uri>
+		</maml:navigationLink>
+		<maml:navigationLink>
+			<maml:linkText>Set-AzureRmVirtualNetworkPeering</maml:linkText>
+			<maml:uri></maml:uri>
+		</maml:navigationLink>
 	</maml:relatedLinks>
 </command:command>
 <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
@@ -11036,7 +11048,7 @@ PS C:\&gt; $Certs = Get-AzureRmApplicationGatewaySslCertificate -ApplicationGate
 	<command:details>
 		<command:name>Get-AzureRmEffectiveNetworkSecurityGroup</command:name>
 		<maml:description>
-			<maml:para />
+			<maml:para>Gets the effective network security group applied on a network interface</maml:para>
 		</maml:description>
 		<maml:copyright>
 			<maml:para />
@@ -11046,7 +11058,7 @@ PS C:\&gt; $Certs = Get-AzureRmApplicationGatewaySslCertificate -ApplicationGate
 		<dev:version />
 	</command:details>
 	<maml:description>
-		<maml:para />
+		<maml:para>The Get-AzureRmEffectiveNetworkSecurityGroup cmdlet lists all the effective security rules that have been applied on a network interface</maml:para>
 	</maml:description>
 	<command:syntax>
 		<command:syntaxItem>
@@ -11166,6 +11178,26 @@ PS C:\&gt; $Certs = Get-AzureRmApplicationGatewaySslCertificate -ApplicationGate
 		</maml:alert>
 	</maml:alertSet>
 	<command:examples>
+		<command:example>
+			<maml:title>--------------------------  Example 1 Getting the effective network security group on a network interface  --------------------------</maml:title>
+			<maml:introduction>
+				<maml:paragraph>PS C:\&gt;</maml:paragraph>
+			</maml:introduction>
+			<dev:code>PS C:\&gt; Get-AzureRmEffectiveNetworkSecurityGroup -NetworkInterfaceName &quot;MyNetworkInterface&quot; -ResourceGroupName &quot;myResourceGroup&quot;</dev:code>
+			<dev:remarks>
+				<maml:para>This command lists all the effective network security rules associated with network interface called &quot;MyNetworkInterface&quot; within resource group &quot;MyResourceGroup.&quot;</maml:para>
+				<maml:para />
+				<maml:para />
+				<maml:para></maml:para>
+			</dev:remarks>
+			<command:commandLines>
+				<command:commandLine>
+					<command:commandText>
+						<maml:para />
+					</command:commandText>
+				</command:commandLine>
+			</command:commandLines>
+		</command:example>
 	</command:examples>
 	<maml:relatedLinks>
 	</maml:relatedLinks>
@@ -11175,7 +11207,7 @@ PS C:\&gt; $Certs = Get-AzureRmApplicationGatewaySslCertificate -ApplicationGate
 	<command:details>
 		<command:name>Get-AzureRmEffectiveRouteTable</command:name>
 		<maml:description>
-			<maml:para />
+			<maml:para>Gets the effective route table applied on a network interface</maml:para>
 		</maml:description>
 		<maml:copyright>
 			<maml:para />
@@ -11185,7 +11217,7 @@ PS C:\&gt; $Certs = Get-AzureRmApplicationGatewaySslCertificate -ApplicationGate
 		<dev:version />
 	</command:details>
 	<maml:description>
-		<maml:para />
+		<maml:para>The Get-AzureRmEffectiveNetworkSecurityGroup lists the effective routes on  a network interface</maml:para>
 	</maml:description>
 	<command:syntax>
 		<command:syntaxItem>
@@ -11305,6 +11337,26 @@ PS C:\&gt; $Certs = Get-AzureRmApplicationGatewaySslCertificate -ApplicationGate
 		</maml:alert>
 	</maml:alertSet>
 	<command:examples>
+		<command:example>
+			<maml:title>--------------------------  Example 1 Getting the effective route table on a network interface  --------------------------</maml:title>
+			<maml:introduction>
+				<maml:paragraph>PS C:\&gt;</maml:paragraph>
+			</maml:introduction>
+			<dev:code>PS C:\&gt; Get-AzureRmEffectiveRouteTable -NetworkInterfaceName &quot;MyNetworkInterface&quot; -ResourceGroupName &quot;myResourceGroup&quot;</dev:code>
+			<dev:remarks>
+				<maml:para>This command lists all the effective route table associated with network interface called &quot;MyNetworkInterface&quot; within resource group &quot;MyResourceGroup.&quot;</maml:para>
+				<maml:para />
+				<maml:para />
+				<maml:para></maml:para>
+			</dev:remarks>
+			<command:commandLines>
+				<command:commandLine>
+					<command:commandText>
+						<maml:para />
+					</command:commandText>
+				</command:commandLine>
+			</command:commandLines>
+		</command:example>
 	</command:examples>
 	<maml:relatedLinks>
 	</maml:relatedLinks>
@@ -16813,7 +16865,7 @@ Subnets           : [
 		<dev:version />
 	</command:details>
 	<maml:description>
-		<maml:para>This cmdlet gets the virtual network peering specified by the user in the cmdlet. Note that there must be an existing peering in order to get it via this cmdlet. This comdlet is a good way to check if a peering was successfully created.</maml:para>
+		<maml:para>This cmdlet gets the virtual network peering specified by the user in the cmdlet. Note that there must be an existing peering in order to get it via this cmdlet. This cmdlet is a good way to check if a peering was successfully created.</maml:para>
 		<maml:para>Look into Add-AzureRmVirtualNetworkPeering to create this peering if you have not created a peering already.</maml:para>
 	</maml:description>
 	<command:syntax>
@@ -16949,7 +17001,7 @@ Subnets           : [
 	<maml:alertSet>
 		<maml:title></maml:title>
 		<maml:alert>
-			<maml:para />
+			<maml:para>Keywords: azure, azurerm, arm, resource, management, manager, network, networking, peering</maml:para>
 		</maml:alert>
 	</maml:alertSet>
 	<command:examples>
@@ -16975,6 +17027,18 @@ Subnets           : [
 		</command:example>
 	</command:examples>
 	<maml:relatedLinks>
+		<maml:navigationLink>
+			<maml:linkText>Remove-AzureRmVirtualNetworkPeering</maml:linkText>
+			<maml:uri></maml:uri>
+		</maml:navigationLink>
+		<maml:navigationLink>
+			<maml:linkText>Add-AzureRmVirtualNetworkPeering</maml:linkText>
+			<maml:uri></maml:uri>
+		</maml:navigationLink>
+		<maml:navigationLink>
+			<maml:linkText>Set-AzureRmVirtualNetworkPeering</maml:linkText>
+			<maml:uri></maml:uri>
+		</maml:navigationLink>
 	</maml:relatedLinks>
 </command:command>
 <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
@@ -38496,7 +38560,7 @@ Remove-AzureRmVirtualNetwork -Name MyVirtualNetwork -ResourceGroupName TestResou
 	<maml:alertSet>
 		<maml:title></maml:title>
 		<maml:alert>
-			<maml:para />
+			<maml:para>Keywords: azure, azurerm, arm, resource, management, manager, network, networking, peering</maml:para>
 		</maml:alert>
 	</maml:alertSet>
 	<command:examples>
@@ -38522,6 +38586,18 @@ Remove-AzureRmVirtualNetwork -Name MyVirtualNetwork -ResourceGroupName TestResou
 		</command:example>
 	</command:examples>
 	<maml:relatedLinks>
+		<maml:navigationLink>
+			<maml:linkText>Get-AzureRmVirtualNetworkPeering</maml:linkText>
+			<maml:uri></maml:uri>
+		</maml:navigationLink>
+		<maml:navigationLink>
+			<maml:linkText>Set-AzureRmVirtualNetworkPeering</maml:linkText>
+			<maml:uri></maml:uri>
+		</maml:navigationLink>
+		<maml:navigationLink>
+			<maml:linkText>Add-AzureRmVirtualNetworkPeering</maml:linkText>
+			<maml:uri></maml:uri>
+		</maml:navigationLink>
 	</maml:relatedLinks>
 </command:command>
 <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
@@ -49619,6 +49695,18 @@ PS C:\&gt; Set-AzureRmVirtualNetworkPeering -VirtualNetworkPeering $LinkToVNet2<
 		</command:example>
 	</command:examples>
 	<maml:relatedLinks>
+		<maml:navigationLink>
+			<maml:linkText>Get-AzureRmVirtualNetworkPeering</maml:linkText>
+			<maml:uri></maml:uri>
+		</maml:navigationLink>
+		<maml:navigationLink>
+			<maml:linkText>Remove-AzureRmVirtualNetworkPeering</maml:linkText>
+			<maml:uri></maml:uri>
+		</maml:navigationLink>
+		<maml:navigationLink>
+			<maml:linkText>Add-AzureRmVirtualNetworkPeering</maml:linkText>
+			<maml:uri></maml:uri>
+		</maml:navigationLink>
 	</maml:relatedLinks>
 </command:command>
 <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">

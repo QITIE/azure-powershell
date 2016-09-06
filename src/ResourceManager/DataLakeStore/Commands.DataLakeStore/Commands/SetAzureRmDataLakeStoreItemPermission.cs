@@ -17,9 +17,9 @@ using System.Management.Automation;
 
 namespace Microsoft.Azure.Commands.DataLakeStore
 {
-    // [Cmdlet(VerbsCommon.Set, "AzureRmDataLakeStoreItemPermissions"), OutputType(typeof(bool))]
-    // [Alias("Set-AdlStoreItemPermissions")]
-    public class SetAzureDataLakeStoreItemPermissions : DataLakeStoreFileSystemCmdletBase
+    [Cmdlet(VerbsCommon.Set, "AzureRmDataLakeStoreItemPermission"), OutputType(typeof(bool))]
+    [Alias("Set-AdlStoreItemPermission")]
+    public class SetAzureDataLakeStoreItemPermission : DataLakeStoreFileSystemCmdletBase
     {
         [Parameter(ValueFromPipelineByPropertyName = true, Position = 0, Mandatory = true,
             HelpMessage = "The DataLakeStore account to execute the filesystem operation in")]
@@ -39,12 +39,12 @@ namespace Microsoft.Azure.Commands.DataLakeStore
             HelpMessage =
                 "The permissions to set for the file or folder. This can be expressed as an octal (e.g. '777') or as a friendly string (e.g. 'rwxrwxrwx')"
             )]
-        [ValidateNotNull]
-        public DataLakeStoreItemPermissionInstance Permissions { get; set; }
+        [ValidateRange(0, 1777)]
+        public int Permission { get; set; }
 
         public override void ExecuteCmdlet()
         {
-            DataLakeStoreFileSystemClient.SetPermission(Path.TransformedPath, Account, Permissions.PermissionsOctal);
+            DataLakeStoreFileSystemClient.SetPermission(Path.TransformedPath, Account, Permission.ToString());
             WriteObject(true);
         }
     }

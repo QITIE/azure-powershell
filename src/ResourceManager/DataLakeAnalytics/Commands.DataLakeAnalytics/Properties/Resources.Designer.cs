@@ -151,7 +151,7 @@ namespace Microsoft.Azure.Commands.DataLakeAnalytics.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to U-SQL Secrets can only be returned by specific database secret name combination. There is no list support..
+        ///   Looks up a localized string similar to U-SQL Secrets and credentials can only be returned by specific database and secret/credential name combination. There is no list support..
         /// </summary>
         internal static string InvalidUSqlSecretRequest {
             get {
