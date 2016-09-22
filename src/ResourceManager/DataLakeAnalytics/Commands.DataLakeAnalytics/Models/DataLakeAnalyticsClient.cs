@@ -465,18 +465,34 @@ namespace Microsoft.Azure.Commands.DataLakeAnalytics.Models
         public void CreateCredential(string accountName, string databaseName,
             string credentialName, string userId, string password, string hostUri)
         {
-            throw new NotImplementedException();
+            _catalogClient.Catalog.CreateCredential(accountName, databaseName, credentialName,
+                new DataLakeAnalyticsCatalogCredentialCreateParameters
+                {
+                    Password = password,
+                    Uri = hostUri,
+                    UserId = userId
+                });
         }
 
         public void UpdateCredentialPassword(string accountName, string databaseName,
             string credentialName, string userId, string password, string newPassword, string hostUri)
         {
-            throw new NotImplementedException();
+            _catalogClient.Catalog.UpdateCredential(accountName, databaseName, credentialName,
+                new DataLakeAnalyticsCatalogCredentialUpdateParameters
+                {
+                    Password = password,
+                    NewPassword = newPassword,
+                    Uri = hostUri,
+                    UserId = userId
+                });
         }
 
         public void DeleteCredential(string accountName, string databaseName, string credentialName, string password = null)
         {
-            throw new NotImplementedException();
+            _catalogClient.Catalog.DeleteCredential(accountName,
+                databaseName,
+                credentialName,
+                string.IsNullOrEmpty(password) ? null : new DataLakeAnalyticsCatalogCredentialDeleteParameters(password));
         }
         
 
@@ -731,6 +747,8 @@ namespace Microsoft.Azure.Commands.DataLakeAnalytics.Models
         private IList<USqlCredential> GetCredentials(string accountName,
             string databaseName)
         {
+            /* TODO: Uncomment out once list support is re-enabled
+             * 
             List<USqlCredential> toReturn = new List<USqlCredential>();
             var response = _catalogClient.Catalog.ListCredentials(accountName, databaseName);
             toReturn.AddRange(response);
@@ -741,6 +759,8 @@ namespace Microsoft.Azure.Commands.DataLakeAnalytics.Models
             }
 
             return toReturn;
+            */
+            throw new NotImplementedException();
         }
 
         private USqlSchema GetSchema(string accountName, string databaseName,
