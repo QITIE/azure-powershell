@@ -178,6 +178,15 @@ namespace Microsoft.Azure.Commands.DataLakeAnalytics.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Creating Data Lake Analytics catalog credential &apos;{0}&apos; in database &apos;{1}&apos; ....
+        /// </summary>
+        internal static string NewDataLakeCatalogCredential {
+            get {
+                return ResourceManager.GetString("NewDataLakeCatalogCredential", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to A port was not specified for host &apos;{0}&apos;. The default port will be used..
         /// </summary>
         internal static string NoPortSpecified {
@@ -300,6 +309,24 @@ namespace Microsoft.Azure.Commands.DataLakeAnalytics.Properties {
         internal static string ScriptFilePathDoesNotExist {
             get {
                 return ResourceManager.GetString("ScriptFilePathDoesNotExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Updating Data Lake Analytics catalog credential &apos;{0}&apos; in database &apos;{1}&apos; ....
+        /// </summary>
+        internal static string SetDataLakeCatalogCredential {
+            get {
+                return ResourceManager.GetString("SetDataLakeCatalogCredential", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to update Data Lake Analytics catalog credential &apos;{0}&apos; in database &apos;{1}&apos;?.
+        /// </summary>
+        internal static string SettingDataLakeCatalogCredential {
+            get {
+                return ResourceManager.GetString("SettingDataLakeCatalogCredential", resourceCulture);
             }
         }
         

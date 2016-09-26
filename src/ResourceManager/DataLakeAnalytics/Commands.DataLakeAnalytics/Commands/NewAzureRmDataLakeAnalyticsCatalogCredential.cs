@@ -20,7 +20,7 @@ using System.Management.Automation;
 
 namespace Microsoft.Azure.Commands.DataLakeAnalytics
 {
-    [Cmdlet(VerbsCommon.New, "AzureRmDataLakeAnalyticsCatalogCredential"), OutputType(typeof(USqlCredential))]
+    [Cmdlet(VerbsCommon.New, "AzureRmDataLakeAnalyticsCatalogCredential", SupportsShouldProcess = true), OutputType(typeof(USqlCredential))]
     [Alias("New-AdlCatalogCredential")]
     public class NewAzureDataLakeAnalyticsCatalogCredential : DataLakeAnalyticsCmdletBase
     {
@@ -76,9 +76,15 @@ namespace Microsoft.Azure.Commands.DataLakeAnalytics
             }
 
             var toUse = Uri ?? new Uri(string.Format("https://{0}:{1}", DatabaseHost, Port));
-
-            DataLakeAnalyticsClient.CreateCredential(Account, DatabaseName, CredentialName, Credential.UserName,
-                Credential.GetNetworkCredential().Password, toUse.AbsoluteUri);
+            ConfirmAction(
+                string.Format(Resources.NewDataLakeCatalogCredential, CredentialName, DatabaseName), 
+                CredentialName, () =>
+                    DataLakeAnalyticsClient.CreateCredential(Account, 
+                    DatabaseName, 
+                    CredentialName, 
+                    Credential.UserName,
+                    Credential.GetNetworkCredential().Password, 
+                    toUse.AbsoluteUri));
         }
     }
 }
