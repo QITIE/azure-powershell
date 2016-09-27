@@ -555,7 +555,7 @@ namespace Microsoft.Azure.Commands.DataLakeAnalytics.Models
                 case DataLakeAnalyticsEnums.CatalogItemType.Credential:
                     if (isList)
                     {
-                        throw new InvalidOperationException(Properties.Resources.InvalidUSqlSecretRequest);
+                        toReturn.AddRange(GetCredentials(accountName, path.DatabaseName));
                     }
                     else
                     {
@@ -747,8 +747,6 @@ namespace Microsoft.Azure.Commands.DataLakeAnalytics.Models
         private IList<USqlCredential> GetCredentials(string accountName,
             string databaseName)
         {
-            /* TODO: Uncomment out once list support is re-enabled
-             * 
             List<USqlCredential> toReturn = new List<USqlCredential>();
             var response = _catalogClient.Catalog.ListCredentials(accountName, databaseName);
             toReturn.AddRange(response);
@@ -759,8 +757,6 @@ namespace Microsoft.Azure.Commands.DataLakeAnalytics.Models
             }
 
             return toReturn;
-            */
-            throw new NotImplementedException();
         }
 
         private USqlSchema GetSchema(string accountName, string databaseName,
