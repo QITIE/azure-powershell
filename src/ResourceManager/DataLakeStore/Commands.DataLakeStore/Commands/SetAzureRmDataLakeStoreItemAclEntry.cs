@@ -50,7 +50,7 @@ namespace Microsoft.Azure.Commands.DataLakeStore
         [ValidateNotNull]
         public DataLakeStorePathInstance Path { get; set; }
 
-        [Parameter(ValueFromPipeline = true, ParameterSetName = BaseParameterSetName, Position = 2,
+        [Parameter(ValueFromPipelineByPropertyName = true, ValueFromPipeline = true, ParameterSetName = BaseParameterSetName, Position = 2,
             Mandatory = true,
             HelpMessage =
                 "The ACL spec containing the entries to set. These entries MUST exist in the ACL spec for the file already. This can be a modified ACL from Get-AzureDataLakeStoreItemAcl or it can be the string " +
@@ -82,8 +82,8 @@ namespace Microsoft.Azure.Commands.DataLakeStore
         public override void ExecuteCmdlet()
         {
             var aclSpec = ParameterSetName.Equals(BaseParameterSetName)
-                ? DataLakeStoreItemAce.GetAclSpec(Acl)
-                : string.Format("{0}{1}:{2}:{3}", Default ? "default:" : string.Empty, AceType, Id,
+                 ? DataLakeStoreItemAce.GetAclSpec(Acl)
+                 : string.Format("{0}{1}:{2}:{3}", Default ? "default:" : string.Empty, AceType, Id,
                     DataLakeStoreItemPermissionInstance.GetPermissionString(Permissions)).ToLowerInvariant();
 
             ConfirmAction(

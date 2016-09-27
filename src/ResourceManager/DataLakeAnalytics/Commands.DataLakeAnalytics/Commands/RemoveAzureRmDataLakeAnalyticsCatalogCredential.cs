@@ -23,31 +23,32 @@ namespace Microsoft.Azure.Commands.DataLakeAnalytics
     public class RemoveAzureDataLakeAnalyticsCredential : DataLakeAnalyticsCmdletBase
     {
         [Parameter(ValueFromPipelineByPropertyName = true, Position = 0, Mandatory = true,
-            HelpMessage = "The account name that contains the catalog to remove the credential(s) from.")]
+            HelpMessage = "The account name that contains the catalog to remove the credential from.")]
         [ValidateNotNullOrEmpty]
         [Alias("AccountName")]
         public string Account { get; set; }
 
         [Parameter(ValueFromPipelineByPropertyName = true, Position = 1, Mandatory = true,
-            HelpMessage = "The name of the database to remove the credential(s) from.")]
+            HelpMessage = "The name of the database to remove the credential from.")]
         [ValidateNotNullOrEmpty]
         public string DatabaseName { get; set; }
 
-        [Parameter(ValueFromPipelineByPropertyName = true, Position = 2, Mandatory = false,
+        [Parameter(ValueFromPipelineByPropertyName = true, Position = 2, Mandatory = true,
             HelpMessage =
-                "Name of credential to be removed. If none specified, will remove all credentials in the specified database")]
+                "Name of credential to be removed.")]
         [ValidateNotNullOrEmpty]
         public string Name { get; set; }
 
-        [Parameter(ValueFromPipelineByPropertyName = true, Position = 3,
-            Mandatory = false, HelpMessage = "The password for the credential to be removed. Required if the caller is not the account owner.")]
-        [ValidateNotNullOrEmpty]
+        [Parameter(ValueFromPipelineByPropertyName = true, Position = 3, Mandatory = false,
+            HelpMessage =
+                "The password for the credential. This is required if the caller is not the owner of the account.")]
+        [ValidateNotNull]
         public PSCredential Password { get; set; }
 
-        [Parameter(Position = 3, Mandatory = false, HelpMessage = "Do not ask for confirmation.")]
+        [Parameter(Position = 4, Mandatory = false, HelpMessage = "Do not ask for confirmation.")]
         public SwitchParameter Force { get; set; }
 
-        [Parameter(Position = 4, Mandatory = false)]
+        [Parameter(Position = 5, Mandatory = false)]
         public SwitchParameter PassThru { get; set; }
 
         public override void ExecuteCmdlet()
@@ -59,10 +60,7 @@ namespace Microsoft.Azure.Commands.DataLakeAnalytics
                 Name,
                 () =>
                 {
-                    DataLakeAnalyticsClient.DeleteCredential(Account, 
-                        DatabaseName, 
-                        Name, 
-                        Password != null ? Password.GetNetworkCredential().Password : string.Empty);
+                    DataLakeAnalyticsClient.DeleteCredential(Account, DatabaseName, Name, Password != null ? Password.GetNetworkCredential().Password : null);
                     if (PassThru)
                     {
                         WriteObject(true);

@@ -744,6 +744,25 @@ namespace Microsoft.Azure.Commands.DataLakeAnalytics.Models
                     credName);
         }
 
+        private IList<USqlCredential> GetCredentials(string accountName,
+            string databaseName)
+        {
+            /* TODO: Uncomment out once list support is re-enabled
+             * 
+            List<USqlCredential> toReturn = new List<USqlCredential>();
+            var response = _catalogClient.Catalog.ListCredentials(accountName, databaseName);
+            toReturn.AddRange(response);
+            while (!string.IsNullOrEmpty(response.NextPageLink))
+            {
+                response = _catalogClient.Catalog.ListCredentialsNext(response.NextPageLink);
+                toReturn.AddRange(response);
+            }
+
+            return toReturn;
+            */
+            throw new NotImplementedException();
+        }
+
         private USqlSchema GetSchema(string accountName, string databaseName,
             string schemaName)
         {

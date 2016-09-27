@@ -210,4 +210,13 @@
   <data name="RemovingDataLakeAnalyticsCatalogCredential" xml:space="preserve">
     <value>Are you sure you want to remove Data Lake Analytics catalog credential '{0}'?</value>
   </data>
+  <data name="NewDataLakeCatalogCredential" xml:space="preserve">
+    <value>Creating Data Lake Analytics catalog credential '{0}' in database '{1}' ...</value>
+  </data>
+  <data name="SetDataLakeCatalogCredential" xml:space="preserve">
+    <value>Updating Data Lake Analytics catalog credential '{0}' in database '{1}' ...</value>
+  </data>
+  <data name="SettingDataLakeCatalogCredential" xml:space="preserve">
+    <value>Are you sure you want to update Data Lake Analytics catalog credential '{0}' in database '{1}'?</value>
+  </data>
 </root>
