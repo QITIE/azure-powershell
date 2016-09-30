@@ -153,7 +153,6 @@ namespace Microsoft.Azure.Commands.DataLakeAnalytics
                 Script = File.ReadAllText(powerShellDestinationPath);
             }
 
-            JobType jobType;
             JobProperties properties;
             switch(this.Type)
             { 
@@ -180,7 +179,6 @@ namespace Microsoft.Azure.Commands.DataLakeAnalytics
                     properties = sqlIpProperties;
                     break;
                 case JobType.Hive:
-                    jobType = JobType.Hive;
                     properties = new HiveJobProperties
                     {
                         Script = Script
