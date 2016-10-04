@@ -14,9 +14,12 @@
 
 using Microsoft.Azure.Commands.DataLakeAnalytics.Models;
 using Microsoft.Azure.Commands.DataLakeAnalytics.Properties;
+using Microsoft.Azure.Commands.ResourceManager.Common.Tags;
 using Microsoft.Azure.Management.DataLake.Analytics.Models;
 using Microsoft.Rest.Azure;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using System.Management.Automation;
 
@@ -131,6 +134,15 @@ namespace Microsoft.Azure.Commands.DataLakeAnalytics
             set { _priority = value; }
         }
 
+        [Parameter(ValueFromPipelineByPropertyName = true, ParameterSetName = JobWithScriptPath, Position = 8,
+            Mandatory = false,
+            HelpMessage = "The custom configurations to use for this job in key/value pairs. This is currently only supported for Hive jobs")]
+        [Parameter(ValueFromPipelineByPropertyName = true, ParameterSetName = JobWithInlineScriptParameterSetName, Position = 8,
+            Mandatory = false,
+            HelpMessage = "The custom configurations to use for this job in key / value pairs.This is currently only supported for Hive jobs")]
+        [ValidateNotNullOrEmpty]
+        public Hashtable Configurations { get; set; }
+
         public override void ExecuteCmdlet()
         {
             // error handling for not passing or passing both script and script path
@@ -157,6 +169,11 @@ namespace Microsoft.Azure.Commands.DataLakeAnalytics
             switch(this.Type)
             { 
                 case JobType.USql:
+                    if(Configurations != null && Configurations.Count > 0)
+                    {
+                        WriteWarningWithTimestamp(Resources.JobConfigurationPropertyWarning);
+                    }
+
                     var sqlIpProperties = new USqlJobProperties
                     {
                         Script = Script
@@ -179,15 +196,22 @@ namespace Microsoft.Azure.Commands.DataLakeAnalytics
                     properties = sqlIpProperties;
                     break;
                 case JobType.Hive:
+                    var convertedConfig = TagsConversionHelper.CreateTagDictionary(Configurations, true);
+                    if (convertedConfig == null)
+                    {
+                        convertedConfig = new Dictionary<string, string>();
+                    }
                     properties = new HiveJobProperties
                     {
-                        Script = Script
+                        Script = Script,
+                        Configurations = convertedConfig
                     };
 
                     if (!string.IsNullOrEmpty(Runtime))
                     {
                         properties.RuntimeVersion = Runtime;
                     }
+
                     break;
                 default:
                     throw new CloudException(string.Format(Resources.InvalidJobType, this.Type));

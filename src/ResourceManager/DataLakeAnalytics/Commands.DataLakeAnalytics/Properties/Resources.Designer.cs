@@ -169,6 +169,15 @@ namespace Microsoft.Azure.Commands.DataLakeAnalytics.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The Configurations parameter is only supported for Hive jobs and will be ignored..
+        /// </summary>
+        internal static string JobConfigurationPropertyWarning {
+            get {
+                return ResourceManager.GetString("JobConfigurationPropertyWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Data Lake Analytics account operation failed with the following error code: {0} and message: {1}.
         /// </summary>
         internal static string LongRunningOperationFailed {

@@ -219,4 +219,7 @@
   <data name="SettingDataLakeCatalogCredential" xml:space="preserve">
     <value>Are you sure you want to update Data Lake Analytics catalog credential '{0}' in database '{1}'?</value>
   </data>
+  <data name="JobConfigurationPropertyWarning" xml:space="preserve">
+    <value>The Configurations parameter is only supported for Hive jobs and will be ignored.</value>
+  </data>
 </root>
