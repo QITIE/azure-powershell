@@ -45,6 +45,7 @@ namespace Microsoft.Azure.Commands.DataLakeStore.Models
         private readonly DataLakeStoreFileSystemManagementClient _client;
         private readonly Random uniqueActivityIdGenerator;
         private const int MaxConnectionLimit = 1000;
+        private const long NeverExpireValue = 253402300800000;
 
         #region Constructors
 
@@ -158,6 +159,21 @@ namespace Microsoft.Azure.Commands.DataLakeStore.Models
         #endregion
 
         #region File and Folder Operations
+
+        public FileStatusProperties SetExpiry(string path, string accountName, long timeToSet)
+        {
+
+            if (timeToSet <= 0 || timeToSet >= NeverExpireValue)
+            {
+                _client.FileSystem.SetFileExpiry(accountName, path, ExpiryOptionType.NeverExpire);
+            }
+            else
+            {
+                _client.FileSystem.SetFileExpiry(accountName, path, ExpiryOptionType.Absolute, timeToSet);
+            }
+
+            return GetFileStatus(path, accountName);
+        }
 
         public void SetTimes(string path, string accountName, DateTimeOffset modificationTime, DateTimeOffset accessTime)
         {
@@ -375,7 +391,7 @@ namespace Microsoft.Azure.Commands.DataLakeStore.Models
             try
             {
                 // disable this due to performance issues during download until issue: https://github.com/Azure/azure-powershell/issues/2499 is resolved.
-                ServiceClientTracing.IsEnabled = false;
+                // ServiceClientTracing.IsEnabled = false;
                 FileType ignoredType;
                 if (!overwrite && (!isDownload && TestFileOrFolderExistence(destinationPath, accountName, out ignoredType) || (isDownload && File.Exists(destinationPath))))
                 {
@@ -502,7 +518,7 @@ namespace Microsoft.Azure.Commands.DataLakeStore.Models
             try
             {
                 // disable this due to performance issues during download until issue: https://github.com/Azure/azure-powershell/issues/2499 is resolved.
-                ServiceClientTracing.IsEnabled = false;
+                // ServiceClientTracing.IsEnabled = false;
                 ServicePointManager.DefaultConnectionLimit =
                     Math.Max((internalFolderThreads * internalFileThreads) + internalFolderThreads,
                         ServicePointManager.DefaultConnectionLimit);
@@ -790,6 +806,17 @@ namespace Microsoft.Azure.Commands.DataLakeStore.Models
                     progress.StatusDescription,
                     progress.PercentComplete);
             }
+        }
+
+        internal long ToUnixTimeStampMs(DateTimeOffset date)
+        {
+            if(date == null || date == DateTimeOffset.MaxValue)
+            {
+                return -1;
+            }
+
+            // NOTE: This assumes the date being passed in is already UTC.
+            return (long)(date.UtcDateTime - new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)).TotalMilliseconds;
         }
 
         #endregion
