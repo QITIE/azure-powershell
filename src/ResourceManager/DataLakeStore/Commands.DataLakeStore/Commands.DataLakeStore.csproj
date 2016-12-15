@@ -189,7 +189,6 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="app.config" />
     <None Include="Microsoft.Azure.Commands.DataLakeStore.dll-help.psd1">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
